@@ -1,0 +1,17 @@
+## インストール手順
+
+```shell
+# docker 起動
+docker-compose up -d
+
+# docker にログイン
+docker exec -it laravel_php_1 bash
+git clone https://github.com/laravel/laravel.git ./
+
+# composer
+composer install
+
+# 設定ファイル作成
+cp ../../../app/laravel/.env.example ../../../.env
+
+```
