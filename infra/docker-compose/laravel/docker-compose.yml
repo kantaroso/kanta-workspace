@@ -12,7 +12,7 @@ services:
   mysql:
     image: mysql:5.7
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ../../data/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=password
 

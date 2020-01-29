@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php
+  name: mysql
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: php
+      app: mysql
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -14,18 +14,21 @@ spec:
   template:
     metadata:
       labels:
-        app: php
+        app: mysql
     spec:
       containers:
-      - name: php
-        image: kantaroso/php_base:20200126172256
+      - name: mysql
+        image: mysql:5.7
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 80
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+        - value: password
         volumeMounts:
           - name: claim-volume
-            mountPath: /data
+            mountPath: /var/lib/mysql
       volumes:
       - name: claim-volume
         persistentVolumeClaim:
-          claimName: pvc-php
+          claimName: pvc-mysql
