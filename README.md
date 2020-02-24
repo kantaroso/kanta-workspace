@@ -8,8 +8,30 @@
 
 ## ディレクトリ構成
 
+## goの初回構築
+
+```sell
+# go module を設定
+# https://qiita.com/tana6/items/df9a48eecb84576f618d
+
+cd app/gin
+go mod init
+
+# go get
+# 必要なライブラリは都度 go get
+go get github.com/gin-gonic/gin
+
+# go 仮実行
+go run main.go
+
+
+
+```
 
 ## ローカル構築手順
+
+### php
+
 ```shell
 
 # dokcerのイメージを作成する
@@ -23,7 +45,6 @@ docker-compose -f infra/docker-compose/laravel/docker-compose.yml up -d
 docker push kantaroso/php_base:xxxxxxxxx
 
 ```
-
 
 
 ## データベース作成

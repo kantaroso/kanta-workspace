@@ -1,4 +1,4 @@
-module kanta-workspace
+module github.com/kantaroso/kanta-workspace
 
 go 1.13
 
