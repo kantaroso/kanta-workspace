@@ -8,25 +8,33 @@
 
 ## ディレクトリ構成
 
-## goの初回構築
+## goのモジュール関連の使い方
 
 ```sell
-# go module を設定
+# モジュールについて
 # https://qiita.com/tana6/items/df9a48eecb84576f618d
 
+# gopath以下で作業していないので必ずpackage名を明記する
+# https://castaneai.hatenablog.com/entry/2019/02/22/151213
 cd app/gin
-go mod init
+go mod init github.com/kantaroso/kanta-workspace
 
 # go get
 # 必要なライブラリは都度 go get
 go get github.com/gin-gonic/gin
 
+# ローカルモジュールの設定
+# app/gin/go.mod に replaceを記載
+# https://qiita.com/moto_pipedo/items/c5859e9c4ad81cdbe750
+cd app/gin/controllers
+go mod init github.com/kantaroso/kanta-workspace/controllers
+
 # go 仮実行
 go run main.go
 
-
-
 ```
+##
+
 
 ## ローカル構築手順
 
@@ -52,7 +60,7 @@ docker push kantaroso/php_base:xxxxxxxxx
 * 準備
 ```sql
 -- localhost:8080
-create database sample DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+create database kanta_workspace DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
 * laravelのファイル作成 [参考](https://qiita.com/shosho/items/a5a5839735dfef9214b1)、[参考2](https://readouble.com/laravel/5.7/ja/eloquent.html)
