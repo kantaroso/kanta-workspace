@@ -5,6 +5,14 @@ import (
 	"strconv"
 )
 
+// dbはに標準ライブラリを使う
+// https://blog.p1ass.com/posts/go-database-sql-wrapper/
+// 理由
+//   ・勉強のため
+//   ・そこそこの機能が載っているらしい
+// 参考
+// https://rabbitfoot141.hatenablog.com/entry/2019/03/05/000551
+
 // Database db接続情報
 type Database struct {
 	User     string

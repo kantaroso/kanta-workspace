@@ -30,6 +30,7 @@ cd app/gin/controllers
 go mod init github.com/kantaroso/kanta-workspace/controllers
 
 # go 仮実行
+cd app/gin
 go run main.go
 
 ```
