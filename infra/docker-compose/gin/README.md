@@ -5,6 +5,6 @@
 docker-compose up -d
 
 # docker にログイン
-docker exec -it gin_go_1 /bin/bash
+docker exec -it gin_go_1 /bin/sh
 
 ```

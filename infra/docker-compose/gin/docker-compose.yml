@@ -6,7 +6,7 @@ services:
     volumes:
       - ../../../app/gin:/go/src/kanta-workspace
     ports:
-      - 80:8080
+      - 80:8090
 
   mysql:
     image: mysql:5.7

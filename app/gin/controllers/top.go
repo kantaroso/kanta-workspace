@@ -1,12 +1,16 @@
 package controllers
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/kantaroso/kanta-workspace/lib/accesslog"
+	"net/http"
 )
 
 // Top トップページの処理
 func Top(c *gin.Context) {
-	c.HTML(http.StatusOK, "top.html", gin.H{})
+	accesslog.Register(c.Request)
+	accessCount := accesslog.GetAccessCount()
+	c.HTML(http.StatusOK, "top.html", gin.H{
+		"pv": accessCount,
+	})
 }
