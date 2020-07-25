@@ -82,6 +82,8 @@ php artisan migrate
 
 * [参考](https://qiita.com/ocadaruma/items/efe720e46ae7ecb9ec25)
 
+* [minikubeの使い方](https://github.com/kantaroso/kubernetes-training)
+
 ```shell
 
 eval $(minikube docker-env)
@@ -95,7 +97,7 @@ make build
 
 ```shell
 
-cd k8s
+cd infra/k8s
 
 # 全ての確認
 kubectl get all
