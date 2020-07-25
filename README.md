@@ -41,19 +41,23 @@ go run main.go
 
 ### php
 
+* [docker-compose](infra/docker-compose/laravel/README.md)
+
 ```shell
 
 # dokcerのイメージを作成する
-infra/docker/make build-php-base
+make build-php-base
 
 # 作成されたイメージをdocker-composeに設定する
 # dockerを起動する
 docker-compose -f infra/docker-compose/laravel/docker-compose.yml up -d
 
-# イメージに問題なければイメージをdocker.hubにアップする
-docker push kantaroso/php_base:xxxxxxxxx
-
 ```
+
+### go
+
+* [docker-compose](infra/docker-compose/gin/README.md)
+
 
 
 ## データベース作成
@@ -84,14 +88,17 @@ php artisan migrate
 
 * [minikubeの使い方](https://github.com/kantaroso/kubernetes-training)
 
+* [コマンドチートシート参考](https://qiita.com/suzukihi724/items/241f7241d297a2d4a55c)
+
 ```shell
 
 eval $(minikube docker-env)
 
-cd docker/php
+# php
+make build-php-prod
 
-# docker imageを作成する
-make build
+# go
+make build-go-prod
 
 ```
 
@@ -101,14 +108,25 @@ cd infra/k8s
 
 # 全ての確認
 kubectl get all
+kubectl get pv
+kubectl get pvc
 
 # 各種登録
-kubectl apply -f namespace.yml
-kubectl apply -f php/deployment.yml
-kubectl apply -f php/service.yml
+kubectl apply -f infra/k8s/namespace.yml
+
+kubectl apply -f infra/k8s/go/pv.yml
+kubectl apply -f infra/k8s/go/pvc.yml
+kubectl apply -f infra/k8s/go/service.yml
+kubectl apply -f infra/k8s/go/deployment.yml
+
+kubectl apply -f infra/k8s/mysql/pv.yml
+kubectl apply -f infra/k8s/mysql/pvc.yml
+kubectl apply -f infra/k8s/mysql/service.yml
+kubectl apply -f infra/k8s/mysql/deployment.yml
 
 # アクセスURLの確認
-minikube service php --url
+minikube service mysql --url
+minikube service go --url
 
 # ssh で中身を確認
 kubectl exec -it <pod-name> /bin/bash
@@ -119,6 +137,8 @@ kubectl exec -it <pod-name> /bin/bash
 ## クエリ
 
 ```
+create database kanta_workspace DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 CREATE TABLE `access_log` (
   `id` bigint AUTO_INCREMENT NOT NULL,
   `method` varchar(255) NOT NULL,

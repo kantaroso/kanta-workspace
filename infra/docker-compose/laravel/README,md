@@ -2,6 +2,7 @@
 
 ```shell
 # docker 起動
+cd infra/docker-compose/laravel
 docker-compose up -d
 
 # docker にログイン

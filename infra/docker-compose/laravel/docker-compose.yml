@@ -1,7 +1,7 @@
 version: "3"
 services:
   php:
-    image: kantaroso/php_base:20200126172256
+    image: kantaroso/kanta-workspace-php-base:latest
     tty: true
     volumes:
       - ../../../app/laravel:/var/www/html

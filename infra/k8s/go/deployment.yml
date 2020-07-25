@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php
+  name: go
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: php
+      app: go
   strategy:
     rollingUpdate:
       maxSurge: 50%
@@ -14,18 +14,22 @@ spec:
   template:
     metadata:
       labels:
-        app: php
+        app: go
     spec:
       containers:
-      - name: php
-        image: kantaroso/kanta-workspace-php-prod:latest
+      - name: go
+        image: kantaroso/kanta-workspace-go-prod
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 80
+          - containerPort: 8090
+        command: ["./main"]
+        env:
+          - name: DB_HOST
+            value: "10.100.23.221"
         volumeMounts:
           - name: claim-volume
             mountPath: /data
       volumes:
       - name: claim-volume
         persistentVolumeClaim:
-          claimName: pvc-php
+          claimName: pvc-go
