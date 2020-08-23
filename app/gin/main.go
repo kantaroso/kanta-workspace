@@ -32,5 +32,8 @@ func main() {
 	// https://qiita.com/ko-watanabe/items/875085780d2ad72fe6af
 	router.GET("/", func(c *gin.Context) { controllers.Top(c) })
 
+	// API
+	router.GET("/api/pv", func(c *gin.Context) { controllers.Pv(c) })
+
 	router.Run(":8090")
 }

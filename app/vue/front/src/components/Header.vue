@@ -27,9 +27,19 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import axios from 'axios'
 
 @Component
 export default class Header extends Vue {
-  pv = 2
+  pv = '-'
+  mounted () {
+    axios.get('http://localhost/api/pv').then(
+      res => {
+        this.pv = String(res.data.pv)
+      }
+    ).catch(
+      error => console.log(error)
+    )
+  }
 }
 </script>

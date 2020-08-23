@@ -15,6 +15,7 @@ func query(sql string, args interface{}, result *[]interface{}) bool {
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 
 	var id int
 	var name string
